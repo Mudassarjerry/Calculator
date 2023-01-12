@@ -3,12 +3,11 @@ package com.example.caluclator
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.TextUtils
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.view.*
 
 class MainActivity<a> : AppCompatActivity() {
 
@@ -19,111 +18,96 @@ class MainActivity<a> : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-         val number1 = findViewById<EditText>(R.id.number1)
-         val number2 = findViewById<EditText>(R.id.number2)
-         val sum = findViewById<Button>(R.id.sum)
-         val subtract = findViewById<Button>(R.id.subtract)
-         val multiply = findViewById<Button>(R.id.multiply)
-         val divide = findViewById<Button>(R.id.divide)
-        val clear = findViewById<Button>(R.id.clear)
-
-
-
          sum.setOnClickListener(){
-
-
-             var  num1 = number1.text.toString().toFloat()
+             if(valitade()){
+            var  num1 = number1.text.toString().toFloat()
              var  num2 = number2.text.toString().toFloat()
-             var result = num1+num2
-             Toast.makeText(this, " The sum is $result", Toast.LENGTH_SHORT).show()
+                var result = num1 + num2
+                Toast.makeText(this, " The Sum is $result", Toast.LENGTH_SHORT).show()
 
-
-
+            }
          }
 
-        subtract.setOnClickListener(){
-
-            var  num1 = number1.text.toString().toFloat()
-            var  num2 = number2.text.toString().toFloat()
-            var result = num1-num2
-            Toast.makeText(this, " The subtract is $result", Toast.LENGTH_SHORT).show()
+        subtract.setOnClickListener() {
+            if(valitade()){
+                var num1 = number1.text.toString().toFloat()
+                var num2 = number2.text.toString().toFloat()
+                var result = num1 - num2
+                Toast.makeText(this, " The Subtract is $result", Toast.LENGTH_SHORT).show()
+            }
         }
 
-        multiply.setOnClickListener(){
-            var  num1 = number1.text.toString().toFloat()
-            var  num2 = number2.text.toString().toFloat()
-            var result = num1*num2
-            Toast.makeText(this, "The multiplication is $result", Toast.LENGTH_SHORT).show()
+
+        multiply.setOnClickListener() {
+            if(valitade()){
+                var num1 = number1.text.toString().toFloat()
+                var num2 = number2.text.toString().toFloat()
+                var result = num1 * num2
+                Toast.makeText(this, "The Multiplication is $result", Toast.LENGTH_SHORT).show()
+            }
         }
+
 
         divide.setOnClickListener(){
+            if(valitade()){
             var  num1 = number1.text.toString().toFloat()
+
             var  num2 = number2.text.toString().toFloat()
             var result = num1/num2
             Toast.makeText(this, "The Divison is $result", Toast.LENGTH_SHORT).show()
+        }}
+
+
+        per.setOnClickListener(){
+
+            if(valitade()){
+                var  num1 = number1.text.toString().toFloat()
+                var  num2 = number2.text.toString().toFloat()
+                var result = (num1/num2)
+                val per = result*100
+
+                Toast.makeText(this, "The Percentage is $per", Toast.LENGTH_SHORT).show()
         }
 
+
+
+    }
         clear.setOnClickListener(){
-            number1.setText("");
-            number2.setText("");
+            number1.setText("")
+            number2.setText("")
+            Toast.makeText(this, "Cleared", Toast.LENGTH_SHORT).show()
 
-            Toast.makeText(this,"Cleared",Toast.LENGTH_SHORT).show()
+
+
         }
 
+    }
 
-    }}
 
-   /* fun Calc(v: View){
-        val number1 = findViewById<EditText>(R.id.number1)
-        val number2 = findViewById<EditText>(R.id.number2)
-        val result = findViewById<TextView>(R.id.result)
+    private fun valitade(): Boolean {
 
         val num1 = number1.text.toString()
-        val num2 = number1.text.toString()
-        val a : Float
-        val b : Float
-        val res : Float
-
+        val num2 = number2.text.toString()
 
         if(num1.isEmpty()){
-            number1.error = "Required"
-            return
-        }
-        else{
-            a = number1.text.toString().toFloat()
+            number1.error = " Required"
+return false
         }
 
         if(num2.isEmpty()){
-            number1.error = "Required"
-            return
+            number2.error = " Required"
+return false
         }
-        else{
-            b = number1.text.toString().toFloat()
-        }
+else{
 
-        when(v.id){
-            R.id.sum->{
-                res = a+b
-                result.text = result.toString()
-            }
-            R.id.subtract->{
-                res = a-b
-                result.text = result.toString()
-            }
-            R.id.multiply->{
-                res = a*b
-                result.text = result.toString()
-            }
-            /*R.id.divide->{
-                if(num2==0.0F){
-                    Toast.makeText(this, "dividebyzero", Toast.LENGTH_SHORT).show()
-                }
-                else{
-                    res = number1/number2
-                    result.text = result.toString()
-                }
 
-            }*/*/
+        return true
+    }
+
+    }
+}
+
+
 
 
 
